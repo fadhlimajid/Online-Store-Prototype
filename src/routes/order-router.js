@@ -1,22 +1,22 @@
 const express = require('express');
-const db = require('../../database/models');
+const orderServices = require('../services/order-service');
 
 const orderRouter = express.Router();
 
-orderRouter.post('/orders', async function (req, res) {
-   res.json(await db.orders.findAll());
-})
+// orderRouter.post('/orders', async function (req, res) {
+//    res.json(await orderServices.findAll());
+// })
 
 orderRouter.get('/orders/:id', async function (req, res) {
    const id = req.params['id']
-   res.json(await db.orders.findAll({
+   res.json(await orderServices.findAll({
       where:{
          id:id
       }
    }))
 })
 // orderRouter.post('/orders', async function(req, res) {
-//     res.json(await db.user.findAll());
+//     res.json(await db.order.findAll());
 // })
 
 module.exports = orderRouter;

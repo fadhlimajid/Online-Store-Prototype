@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING
   }, {});
   users.associate = function (models) {
+    users.hasMany(orders, { foreignKey: 'id', sourceKey: 'users_id' });
+    orders.belongsTo(users, { foreignKey: 'id', targetKey: 'users_id' });
     // users.hasMany(models.orders, { foreignKey: 'users_id', sourceKey: 'id' })
   };
   return users;

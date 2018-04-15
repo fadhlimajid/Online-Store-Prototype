@@ -9,12 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       orders_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        unique:true,
+        type: Sequelize.INTEGER
       },
       bank_account: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

@@ -1,5 +1,7 @@
 'use strict';
 
+const orders = require('./orders')
+
 module.exports = (sequelize, DataTypes) => {
   var users = sequelize.define('users', {
     username: DataTypes.STRING,
@@ -10,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING
   }, {});
   users.associate = function (models) {
-    users.hasMany(orders, { foreignKey: 'id', sourceKey: 'users_id' });
-    orders.belongsTo(users, { foreignKey: 'id', targetKey: 'users_id' });
-    // users.hasMany(models.orders, { foreignKey: 'users_id', sourceKey: 'id' })
+    users.hasMany(models.orders, { foreignKey: 'users_id', targetKey: 'id' });
+    users.hasMany(models.orders_detail, { foreignKey: 'users_id', targetKey: 'id' });
+    // users.hasMany(models.payments, { foreignKey: 'users_id', targetKey: 'id' });
   };
   return users;
 };

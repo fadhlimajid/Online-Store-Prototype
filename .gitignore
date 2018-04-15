@@ -1,2 +1,4 @@
 node_modules
-tes.js
+tests
+js
+public/store.html

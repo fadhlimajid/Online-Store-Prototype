@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
 
 app.use('/api', userRouter);
 app.use('/api', productRouter);
-app.use('/api', orderRouter);
+// app.use('/api', orderRouter);
 app.listen(3000, function () {
    console.log("server is running on port 3000")
 });

@@ -1,5 +1,6 @@
 'use strict';
 
+const Chance = require('chance')
 const chance = new Chance();
 
 module.exports = {
@@ -10,7 +11,9 @@ module.exports = {
         name: chance.first(),
         description: chance.sentence(),
         price: chance.integer({min:100,max:2000}),
-        stock: chance.integer({min:1,max:30})
+        stock: chance.integer({min:1,max:30}),
+        createdAt: new Date(),
+        updatedAt: new Date()
       })
     }
     return queryInterface.bulkInsert('products', user, {});

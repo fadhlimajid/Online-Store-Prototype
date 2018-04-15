@@ -1,0 +1,68 @@
+<doctype html!>
+   <html>
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Uwaw Online Store</title>
+   </head>
+
+   <body>
+      <form id='login-form' action="" method='post'>
+         <input name="username" type="text" placeholder="Username" required>
+         <input name="password" type="password" placeholder="Password" required>
+         <button type='submit'>Login</button>
+         <label for='form-switch'>
+         </label>
+      </form>
+      <span>Register</span>
+      <form id='register-form' action="" method='post'>
+         <input name="username" type="text" placeholder="Username" required>
+         <input name="password" type="password" placeholder="Password" required>
+         <input name="email" type="email" placeholder="Email" required>
+         <input name="address" type="text" placeholder="Address" required>
+         <input name="phone" type="text" placeholder="Phone" required>
+         <button type='submit'>Register</button>
+         <label for='form-switch'>Already Member ? Sign In Now..</label>
+      </form>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>
+         // $('input[name=username]').change(e=>{
+         //    console.log($('#username').val())
+         // })
+         $("#register-form").submit((res) => {
+            res.preventDefault();
+            let abc = $("#register-form").serializeArray()
+            // console.log(abc)
+            $.ajax({
+               type: 'POST',
+               url: 'http://localhost:3000/api/users/register',
+               data: abc,
+               success: function () {
+                  if (console && console.log) {
+                     console.log('JS error report successful.');
+                  }
+               },
+               error: function () {
+                  if (console && console.error) {
+                     console.error('JS error report submission failed!');
+                  }
+               }
+            })
+         })
+         $("#login-form").submit((res) => {
+            res.preventDefault();
+            let abcdef = $("#login-form").serializeArray()
+            $.ajax({
+               type: 'POST',
+               url: 'http://localhost:3000/api/users/login',
+               data: abcdef,
+               success: function (res) {
+                  res ? localStorage.setItem("tokennya", "cihuy") : console.log('no ok')
+               }
+            })
+         })
+      </script>
+   </body>
+
+   </html>

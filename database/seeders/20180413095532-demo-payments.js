@@ -5,21 +5,23 @@ const chance = new Chance();
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+
     let user = [];
     for (let i = 0; i < 20; i++) {
       user.push({
-        users_id: chance.integer({min:1,max:20}),
-        orders_details_id: chance.integer({min:1,max:20}),
+        orders_id: chance.integer({ min: 1, max: 25 }),
+        bank_account: chance.integer({ min: 12051508, max: 381025810 }),
         createdAt: new Date(),
         updatedAt: new Date()
       })
     }
-    return queryInterface.bulkInsert('orders', user, {});
+    return queryInterface.bulkInsert('payments', user, {});
   },
 
   down: (queryInterface, Sequelize) => {
 
-    return queryInterface.bulkDelete('orders', null, {});
+    // Example:
+    return queryInterface.bulkDelete('payments', null, {});
 
   }
 };

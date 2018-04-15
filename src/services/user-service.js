@@ -35,6 +35,17 @@ module.exports = {
       return await users.findAll(opt)
    },
 
+   login: async (queries) => {
+      // console.log(queries)
+      let opt = {
+         where: {
+            username: { [Op.eq]: queries.username },
+            password: { [Op.eq]: queries.password }
+         }
+      }
+      return await users.find(opt)
+   },
+
    putall: async (coba, id) => {
       let puts = users.update({
          username: coba.username,
@@ -47,6 +58,6 @@ module.exports = {
    },
 
    delete: async (id) => {
-      users.destroy({where:{id:id}})
+      users.destroy({ where: { id: id } })
    }
 };

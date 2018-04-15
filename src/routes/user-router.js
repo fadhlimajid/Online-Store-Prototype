@@ -1,6 +1,5 @@
 const express = require('express');
 const us = require('../services/user-service');
-const users = require('../../database/models').users;
 const userRouter = express.Router();
 const app = express()
 const bodyParser = require('body-parser')
@@ -14,6 +13,12 @@ userRouter.post('/users/register', async function (req, res) {
 
 userRouter.get('/users', async function (req, res) {
    res.json(await us.getall(req.query))
+})
+
+userRouter.post('/users/login', async function(req,res){
+   let {username, password} = req.body
+   let data = {username, password}
+   res.json(await us.login(data))
 })
 
 userRouter.put('/users/:id', async function (req, res) {

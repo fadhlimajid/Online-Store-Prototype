@@ -1,4 +1,3 @@
 node_modules
 tests
-js
-public/store.html
+config

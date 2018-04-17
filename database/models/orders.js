@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   orders.associate = function(models) {
     orders.belongsTo(models.users, { foreignKey: 'users_id', targetKey: 'id' });
     orders.hasOne(models.orders_detail, { foreignKey: 'orders_id', targetKey: 'id' });
+    orders.hasOne(models.payments, { foreignKey: 'orders_id', targetKey: 'id' });
   };
   return orders;
 };

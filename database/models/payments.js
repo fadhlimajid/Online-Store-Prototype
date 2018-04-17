@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     bank_account: DataTypes.INTEGER
   }, {});
   payments.associate = function(models) {
-    // payments.belongsTo(models.users, {foreignKey:'users_id', targetKey: 'id'})
+    payments.belongsTo(models.orders, {foreignKey:'orders_id', targetKey: 'id'})
   };
   return payments;
 };

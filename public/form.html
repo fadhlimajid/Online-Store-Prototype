@@ -23,46 +23,9 @@
          <input name="address" type="text" placeholder="Address" required>
          <input name="phone" type="text" placeholder="Phone" required>
          <button type='submit'>Register</button>
-         <label for='form-switch'>Already Member ? Sign In Now..</label>
       </form>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script>
-         // $('input[name=username]').change(e=>{
-         //    console.log($('#username').val())
-         // })
-         $("#register-form").submit((res) => {
-            res.preventDefault();
-            let abc = $("#register-form").serializeArray()
-            // console.log(abc)
-            $.ajax({
-               type: 'POST',
-               url: 'http://localhost:3000/api/users/register',
-               data: abc,
-               success: function () {
-                  if (console && console.log) {
-                     console.log('JS error report successful.');
-                  }
-               },
-               error: function () {
-                  if (console && console.error) {
-                     console.error('JS error report submission failed!');
-                  }
-               }
-            })
-         })
-         $("#login-form").submit((res) => {
-            res.preventDefault();
-            let abcdef = $("#login-form").serializeArray()
-            $.ajax({
-               type: 'POST',
-               url: 'http://localhost:3000/api/users/login',
-               data: abcdef,
-               success: function (res) {
-                  res ? localStorage.setItem("tokennya", "cihuy") : console.log('no ok')
-               }
-            })
-         })
-      </script>
+      <script src="/mainPage.js"></script>
    </body>
 
    </html>

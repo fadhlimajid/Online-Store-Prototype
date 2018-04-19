@@ -20,12 +20,18 @@ $("#register-form").submit((res) => {
 })
 $("#login-form").submit((res) => {
    res.preventDefault();
-   let abcdef = $("#login-form").serializeArray()
+   // let abcdef = $("#login-form").serializeArray()
+   let abcdef = {
+      username: $("#username").val(),
+      password: $("#password").val()
+   }
    $.ajax({
       type: 'POST',
       url: 'http://localhost:3000/api/users/login',
-      data: abcdef,
+      data: JSON.stringify(abcdef),
+      contentType: "application/json; charset=utf-8",
       success: function (res) {
+         // console.log(res)
          if (res) {
             localStorage.setItem("tokennya", "cihuy");
             console.log('Login successful')

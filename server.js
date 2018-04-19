@@ -7,7 +7,7 @@ const productsTable = require('./src/routes/products-table');
 const bodyParser = require('body-parser');
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");

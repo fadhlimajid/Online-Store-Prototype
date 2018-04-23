@@ -5,8 +5,6 @@ const axios = require('axios');
 const ord_d = require('../../database/models').orders_detail;
 const http = require('http');
 
-
-
 console.log(typeof orders)
 
 class Orders {
@@ -25,7 +23,7 @@ class Orders {
             users_id: params.users_id,
             orders_id: id.id,
             products_id: x.id,
-            quantity: x.qty
+            quantity: x.quantity
          })
       })
 

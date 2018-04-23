@@ -1,5 +1,10 @@
 const orders = require('../../database/models').orders;
 const Sequelize = require('sequelize');
+const products = require('../../database/models').products;
+const axios = require('axios');
+const ord_d = require('../../database/models').orders_detail;
+const http = require('http');
+
 
 
 console.log(typeof orders)
@@ -10,12 +15,47 @@ class Orders {
    }
 
    async postAll(params) {
-      let posts = orders.create({
-         id: params.id,
+      let post = orders.create({
          users_id: params.users_id,
-         orders_details_id: params.orders_details_id,
       })
-      return await posts
+      const id = await post
+
+      await params.data.map(x => {
+         ord_d.create({
+            users_id: params.users_id,
+            orders_id: id.id,
+            products_id: x.id,
+            quantity: x.qty
+         })
+      })
+
+      const pay_details = {
+         "transaction_details": {
+            order_id: id.id,
+            gross_amount: parseInt(params.total)
+         }
+      }
+
+      const options = {
+         headers: {
+            Authorization: "Basic U0ItTWlkLXNlcnZlci1yZUI1WVJVRlVpWGgyc2VHM1J1RXpTTEo6",
+            Accept: "application/json",
+            "Content-Type": "application/json"
+         }
+      }
+
+      const abc = axios.post('https://app.sandbox.midtrans.com/snap/v1/transactions', pay_details, options).then(response => {
+         return response.data
+      }).catch(err => {
+         console.error(err)
+      })
+
+      await params.data.map(x => {
+         products.update({
+            stock: x.stock
+         }, { where: { id: x.id } })
+      })
+      return await abc
    }
 
    async getAll(queries) {
@@ -31,7 +71,7 @@ class Orders {
             }
          }
       }
-      return await orders.findAll(opt)
+      await orders.findAll(opt)
    }
 
    async putAll(coba, id) {

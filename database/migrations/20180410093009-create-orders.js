@@ -11,9 +11,6 @@ module.exports = {
       users_id: {
         type: Sequelize.INTEGER
       },
-      orders_details_id: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

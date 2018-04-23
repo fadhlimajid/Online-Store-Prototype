@@ -2,13 +2,18 @@ const users = require('../../database/models').users;
 const express = require('express');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const Chance = require('chance');
+const chance = new Chance();
 
 module.exports = {
 
    postall: async (params) => {
       let posts = users.create({
          username: params.username,
+         firstname: params.firstname,
+         lastname: params.lastname,
          password: params.password,
+         token: chance.string({ length: 50 }),
          email: params.email,
          address: params.address,
          phone: params.phone
@@ -24,6 +29,8 @@ module.exports = {
                [Op.or]: {
                   id: queries.id,
                   username: { [Op.like]: `%${queries.name}%` },
+                  firstname: { [Op.like]: `%${queries.first}%` },
+                  lastname: { [Op.like]: `%${queries.last}%` },
                   email: { [Op.like]: `%${queries.email}%` },
                   address: { [Op.like]: `%${queries.address}%` },
                   phone: queries.phone,
@@ -38,6 +45,8 @@ module.exports = {
    putall: async (coba, id) => {
       let puts = users.update({
          username: coba.username,
+         firstname: params.firstname,
+         lastname: params.lastname,
          password: coba.password,
          email: coba.email,
          address: coba.address,

@@ -1,12 +1,22 @@
 $("#register-form").submit((res) => {
    res.preventDefault();
-   let abc = $("#register-form").serializeArray()
+   const abc = $("#register-form").serializeArray()
+   let obj = {
+      username: $("#name").val(),
+      firstname: $("#firstname").val(),
+      lastname: $("#lastname").val(),
+      password: $("#pw").val(),
+      email: $("#email").val(),
+      address: $("#address").val(),
+      phone: $("#phone").val()
+   }
+
    $.ajax({
       type: 'POST',
       url: 'http://localhost:3000/api/users/register',
-      data: abc,
+      data: JSON.stringify(obj),
+      contentType: "application/json; charset=utf-8",
       success: function () {
-         // if()?
          if (console && console.log) {
             console.log('JS error report successful.');
          }
@@ -18,22 +28,22 @@ $("#register-form").submit((res) => {
       }
    })
 })
+
 $("#login-form").submit((res) => {
    res.preventDefault();
-   // let abcdef = $("#login-form").serializeArray()
    let abcdef = {
       username: $("#username").val(),
       password: $("#password").val()
    }
+   console.log(abcdef)
    $.ajax({
       type: 'POST',
       url: 'http://localhost:3000/api/users/login',
       data: JSON.stringify(abcdef),
       contentType: "application/json; charset=utf-8",
       success: function (res) {
-         // console.log(res)
          if (res) {
-            localStorage.setItem("tokennya", "cihuy");
+            localStorage.setItem("tokennya", JSON.stringify({ tokennya: res.token, id: res.id }));
             console.log('Login successful')
             window.location = "/store.html"
          } else {

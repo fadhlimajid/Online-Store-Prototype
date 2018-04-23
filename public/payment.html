@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script>
+      if (localStorage.getItem('tokennya')) {
+         $.ajax({
+            type: 'GET',
+            url: `http://localhost:3000/api/users/?id=${JSON.parse(localStorage.getItem('tokennya')).id}`,
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+               JSON.parse(localStorage.getItem('tokennya')).tokennya === res[0].token ? console.log('Welcome to Uwaw Store') : window.location = '/form.html'
+            }
+         })
+      } else { window.location = '/form.html' }
+   </script>
+</head>
+
+<body>
+   <button id="payment">BAAAAAYYYAAAAAAARRRRRR</button>
+   <script>
+      let total = localStorage.getItem('total')
+      $('#payment').on('click', () => {
+         const cart = localStorage.getItem('cart')
+         $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/api/payment",
+            headers: {
+               Accept: "application/json",
+               "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+               // order_id: 47,
+               gross_amount: total
+            }),
+            success: function (msg) {
+               window.location = msg.redirect_url
+            },
+            error: function (err) {
+               console.log(err)
+            }
+         });
+      })
+   </script>
+</body>
+
+</html>

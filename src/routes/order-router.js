@@ -7,10 +7,10 @@ const orderRouter = express.Router();
 const os = new orderService(Sequelize.Op)
 
 orderRouter.post('/orders', async function (req, res) {
-   let { users_id, orders_details_id } = req.body;
-   let params = { users_id, orders_details_id };
-   const orders_post = await (os).postAll(params)
-   res.json(orders_post);
+   let {users_id, data, total} = req.body;
+   let params = { users_id, data, total };
+   const orders_post = await os.postAll(params)
+   res.json(orders_post)
 })
 
 orderRouter.get('/orders', async function (req, res) {

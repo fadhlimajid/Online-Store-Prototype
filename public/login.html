@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>UWAW Store Login</title>
+   <link rel="stylesheet" href="./css/login.css">
+   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script>
+         $(document).onload(
+            $.ajax({
+               type: 'GET',
+               url: `http://localhost:3000/api/users/?id=${JSON.parse(localStorage.getItem('tokennya')).id}`,
+               contentType: "application/json; charset=utf-8",
+               success: function (res) {
+                  JSON.parse(localStorage.getItem('tokennya')).tokennya ? window.location = '/store.html' : console.log('ok')
+               }
+            })
+         )
+      </script>
+</head>
+
+<body>
+   <div class="container">
+      <div class="login-container">
+         <div id="login"></div>
+         <div class="avatar"></div>
+         <div class="form-box">
+            <form id="login-form" action="" method="">
+               <input id="username" name="user" type="text" placeholder="username">
+               <input id="password" type="password" placeholder="password">
+               <button class="btn btn-info btn-block login" type="submit">Login</button>
+
+            </form>
+            <button class="btn btn-info btn-block login" onclick="location.href = '/Register.html'">Register</button>
+         </div>
+      </div>
+
+   </div>
+   <script src='/mainPage.js'></script>
+</body>
+
+</html>

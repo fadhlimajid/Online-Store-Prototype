@@ -15,7 +15,6 @@ productRouter.get('/products', async function (req, res) {
    res.json(await us.getall(req.query))
 })
 
-
 productRouter.put('/products/:id', async function (req, res) {
    let { name, description, price, stock } = req.body;
    let coba = { name, description, price, stock }

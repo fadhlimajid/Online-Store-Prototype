@@ -9,7 +9,7 @@ module.exports = {
     let user = [];
     for (let i = 0; i < 20; i++) {
       user.push({
-        orders_id: chance.integer({ min: 1, max: 20 }),
+        orders_id: i,
         bank_account: chance.integer({ min: 120008, max: 385810 }),
         createdAt: new Date(),
         updatedAt: new Date()

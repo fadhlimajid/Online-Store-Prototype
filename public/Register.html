@@ -1,0 +1,55 @@
+<doctype html!>
+   <html>
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Uwaw Online Store</title>
+      <link rel="stylesheet" href="./css/login.css">
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+      <script>
+         if (localStorage.getItem('tokennya')) {
+            $.ajax({
+               type: 'GET',
+               url: `http://localhost:3000/api/users/?id=${JSON.parse(localStorage.getItem('tokennya')).id}`,
+               contentType: "application/json; charset=utf-8",
+               success: function (res) {
+                  JSON.parse(localStorage.getItem('tokennya')).tokennya === res[0].token ? console.log('Welcome to Uwaw Store') : window.location = '/login.html'
+               }
+            })
+         } else { window.location = '/login.html' }
+      </script>
+   </head>
+
+   <body>
+      <form id='login-form' action="" method='post'>
+         <input name="username" type="text" placeholder="Username" required id="username">
+         <input name="password" type="password" placeholder="Password" required id="password">
+         <button type='submit'>Login</button>
+         <label for='form-switch'>
+         </label>
+      </form>
+      <span>Register</span>
+      <form id='register-form' method="POST">
+         <input id="name" name="username" type="text" placeholder="Username" required>
+         <br>
+         <input id="firstname" name="firstname" type="text" placeholder="First Name" required>
+         <br>
+         <input id="lastname" name="lastname" type="text" placeholder="Last Name" required>
+         <br>
+         <input id="pw" name="password" type="password" placeholder="Password" required>
+         <br>
+         <input id="email" name="email" type="email" placeholder="Email" required>
+         <br>
+         <input id="address" name="address" type="text" placeholder="Address" required>
+         <br>
+         <input id="phone" name="phone" type="text" placeholder="Phone" required>
+         <br>
+         <button type='submit'>Register</button>
+      </form>
+      <script src="/mainPage.js"></script>
+   </body>
+
+   </html>

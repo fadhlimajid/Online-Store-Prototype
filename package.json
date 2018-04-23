@@ -12,13 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "chance": "^1.0.13",
     "datatables": "^1.10.13",
     "express": "^4.16.3",
     "express-generator": "^4.16.0",
+    "http": "0.0.0",
     "jest": "^22.4.3",
     "mysql2": "^1.5.3",
+    "paginationjs": "^2.1.2",
     "sequelize": "^4.37.6",
     "sequelize-cli": "^4.0.0"
   },

@@ -6,8 +6,10 @@ const bodyParser = require('body-parser')
 // app.use(bodyParser.raw());
 
 userRouter.post('/users/register', async function (req, res) {
-   let { username, password, email, address, phone } = req.body;
-   let params = { username, password, email, address, phone }
+   let { username, firstname, lastname, password, email, address, phone } = req.body;
+   let params = { username, firstname, lastname, password, email, address, phone }
+   // console.log(req.body);
+   
    res.json(await us.postall(params));
 })
 
@@ -17,8 +19,8 @@ userRouter.get('/users', async function (req, res) {
 
 
 userRouter.put('/users/:id', async function (req, res) {
-   let { username, password, email, address, phone } = req.body;
-   let coba = { username, password, email, address, phone }
+   let { username, firstname, lastname, password, email, address, phone } = req.body;
+   let coba = { username, firstname, lastname, password, email, address, phone }
    let { id } = req.params
    res.json(await us.putall(coba, id).catch((error) => {
       console.log('=====', error)

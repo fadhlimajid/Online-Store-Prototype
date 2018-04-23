@@ -12,4 +12,8 @@ fetch('http://localhost:3000/api/products').then(res => {
          </tr>`
       )
    })
-})
+}).then(() => {
+   $('#products_table').DataTable({
+      ordering: true
+  });
+});

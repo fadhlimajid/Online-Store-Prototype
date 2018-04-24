@@ -56,7 +56,7 @@ class Orders {
             });
             transporter.sendMail({
                from: 'noreply@uwawstore.com',
-               to: '0fda59b80b-06b3bf@inbox.mailtrap.io',
+               to: params.email,
                subject: 'Message title',
                text: `Plaintext version of the message ${response.data.redirect_url}`,
                html: `<p>Thank you for buying from Uwaw Store, please follow the payment link below: <br> <a href=${response.data.redirect_url}>${response.data.redirect_url}</a></p>`

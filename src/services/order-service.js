@@ -4,8 +4,8 @@ const products = require('../../database/models').products;
 const axios = require('axios');
 const ord_d = require('../../database/models').orders_detail;
 const http = require('http');
+const nodemailer = require('nodemailer');
 
-console.log(typeof orders)
 
 class Orders {
    constructor(Op) {
@@ -43,6 +43,27 @@ class Orders {
       }
 
       const abc = axios.post('https://app.sandbox.midtrans.com/snap/v1/transactions', pay_details, options).then(response => {
+         nodemailer.createTestAccount((err, account) => {
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+               host: 'smtp.mailtrap.io',
+               port: 2525,
+               secure: false, // true for 465, false for other ports
+               auth: {
+                  user: `10d26a1130a324`, // generated ethereal user
+                  pass: `53804ef841ea69`  // generated ethereal password
+               }
+            });
+            transporter.sendMail({
+               from: 'noreply@uwawstore.com',
+               to: '0fda59b80b-06b3bf@inbox.mailtrap.io',
+               subject: 'Message title',
+               text: `Plaintext version of the message ${response.data.redirect_url}`,
+               html: `<p>Thank you for buying from Uwaw Store, please follow the payment link below: <br> <a href=${response.data.redirect_url}>${response.data.redirect_url}</a></p>`
+            }).then(info => {
+               console.log('Preview URL: ' + nodemailer.getTestMessageUrl(info));
+            });
+         });
          return response.data
       }).catch(err => {
          console.error(err)

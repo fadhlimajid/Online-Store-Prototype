@@ -19,6 +19,7 @@ $("#register-form").submit((res) => {
       success: function () {
          if (console && console.log) {
             console.log('JS error report successful.');
+            window.location = '/login.html'
          }
       },
       error: function () {

@@ -16,21 +16,14 @@
                url: `http://localhost:3000/api/users/?id=${JSON.parse(localStorage.getItem('tokennya')).id}`,
                contentType: "application/json; charset=utf-8",
                success: function (res) {
-                  JSON.parse(localStorage.getItem('tokennya')).tokennya === res[0].token ? console.log('Welcome to Uwaw Store') : window.location = '/login.html'
+                  JSON.parse(localStorage.getItem('tokennya')).tokennya === res[0].token ? window.location = '/login.html' : console.log('Welcome to Uwaw Store')
                }
             })
-         } else { window.location = '/login.html' }
+         } else { console.log('Welcome to Uwaw Store') }
       </script>
    </head>
 
    <body>
-      <form id='login-form' action="" method='post'>
-         <input name="username" type="text" placeholder="Username" required id="username">
-         <input name="password" type="password" placeholder="Password" required id="password">
-         <button type='submit'>Login</button>
-         <label for='form-switch'>
-         </label>
-      </form>
       <span>Register</span>
       <form id='register-form' method="POST">
          <input id="name" name="username" type="text" placeholder="Username" required>

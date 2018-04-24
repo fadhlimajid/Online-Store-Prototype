@@ -7,8 +7,8 @@ const orderRouter = express.Router();
 const os = new orderService(Sequelize.Op)
 
 orderRouter.post('/orders', async function (req, res) {
-   let {users_id, data, total} = req.body;
-   let params = { users_id, data, total };
+   let { users_id, data, total, email } = req.body;
+   let params = { users_id, data, total, email };
    const orders_post = await os.postAll(params)
    res.json(orders_post)
 })
@@ -29,9 +29,9 @@ orderRouter.put('/orders/:id', async function (req, res) {
 })
 
 orderRouter.delete('/orders/:id', async function (req, res) {
-   let {id} = req.params
-   order_delete = await os.delete(id).catch((error)=>{
-      console.log('=====',error)
+   let { id } = req.params
+   order_delete = await os.delete(id).catch((error) => {
+      console.log('=====', error)
    })
    res.json(order_delete)
 })

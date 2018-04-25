@@ -19,7 +19,7 @@ MT_USER=Mailtrap_Ethereal_User_Name
 MT_PASS=Mailtrap_Ethereal_Password
 MT_MAIL=Mailtrap_Email
 ```
-- Midtrans Server Key should be converted first into basic encode format.
+- Midtrans Server Key should be converted first into base64 encode format. ```https://base64encode.org``` could help you with it.
 
 
 ## Usage

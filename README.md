@@ -8,7 +8,7 @@ We used **nodejs** with **Sequelize**, **My SQL**, **JQuery**, **Midtrans**, for
 - Open the Online Store Directory. ```cd Online-Store-Prototype```
 - Create  mailtrap account.
 - Create midtrans account.
-- rename the ```.env.example``` in the root directory into ```.env``` and edit the contents.
+- rename the ```.env.example``` in the Online_Store_Prototype directory into ```.env``` and edit the contents.
 ```
 DB_HOST=localhost
 DB_DATABASE=Your_Database

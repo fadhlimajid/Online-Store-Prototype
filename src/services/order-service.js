@@ -5,7 +5,7 @@ const axios = require('axios');
 const ord_d = require('../../database/models').orders_detail;
 const http = require('http');
 const nodemailer = require('nodemailer');
-
+require('dotenv').config()
 
 class Orders {
    constructor(Op) {
@@ -36,7 +36,7 @@ class Orders {
 
       const options = {
          headers: {
-            Authorization: "Basic U0ItTWlkLXNlcnZlci1yZUI1WVJVRlVpWGgyc2VHM1J1RXpTTEo6",
+            Authorization: `Basic ${process.env.M_AUTH}`,
             Accept: "application/json",
             "Content-Type": "application/json"
          }
@@ -50,13 +50,13 @@ class Orders {
                port: 2525,
                secure: false, // true for 465, false for other ports
                auth: {
-                  user: `10d26a1130a324`, // generated ethereal user
-                  pass: `53804ef841ea69`  // generated ethereal password
+                  user: `${process.env.MT_USER}`, // generated ethereal user
+                  pass: `${process.env.MT_PASS}`  // generated ethereal password
                }
             });
             transporter.sendMail({
                from: 'noreply@uwawstore.com',
-               to: params.email,
+               to: `${process.env.MT_MAIL}`,
                subject: 'Message title',
                text: `Plaintext version of the message ${response.data.redirect_url}`,
                html: `<p>Thank you for buying from Uwaw Store, please follow the payment link below: <br> <a href=${response.data.redirect_url}>${response.data.redirect_url}</a></p>`

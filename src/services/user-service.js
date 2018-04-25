@@ -45,8 +45,8 @@ module.exports = {
    putall: async (coba, id) => {
       let puts = users.update({
          username: coba.username,
-         firstname: params.firstname,
-         lastname: params.lastname,
+         firstname: coba.firstname,
+         lastname: coba.lastname,
          password: coba.password,
          email: coba.email,
          address: coba.address,

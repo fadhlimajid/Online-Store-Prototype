@@ -13,7 +13,7 @@ $("#register-form").submit((res) => {
 
    $.ajax({
       type: 'POST',
-      url: 'http://localhost:3000/api/users/register',
+      url: '/api/users/register',
       data: JSON.stringify(obj),
       contentType: "application/json; charset=utf-8",
       success: function () {
@@ -39,7 +39,7 @@ $("#login-form").submit((res) => {
    console.log(abcdef)
    $.ajax({
       type: 'POST',
-      url: 'http://localhost:3000/api/users/login',
+      url: '/api/users/login',
       data: JSON.stringify(abcdef),
       contentType: "application/json; charset=utf-8",
       success: function (res) {

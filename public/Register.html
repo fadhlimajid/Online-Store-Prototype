@@ -13,7 +13,7 @@
          if (localStorage.getItem('tokennya')) {
             $.ajax({
                type: 'GET',
-               url: `http://localhost:3000/api/users/?id=${JSON.parse(localStorage.getItem('tokennya')).id}`,
+               url: `/api/users/?id=${JSON.parse(localStorage.getItem('tokennya')).id}`,
                contentType: "application/json; charset=utf-8",
                success: function (res) {
                   JSON.parse(localStorage.getItem('tokennya')).tokennya === res[0].token ? window.location = '/login.html' : console.log('Welcome to Uwaw Store')

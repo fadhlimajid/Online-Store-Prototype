@@ -34,4 +34,4 @@ npm start
 ```
 
 This prototype is focused on server-side, so it's still missing some client-side features. For this version, we could simulate user register, login, and purchasing some items.
-Default URL is ```http://localhost:3000/```.
+Default URL is ```/```.

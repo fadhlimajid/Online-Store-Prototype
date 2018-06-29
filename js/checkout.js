@@ -1,7 +1,7 @@
 function checkout() {
    const iou = JSON.parse(localStorage.getItem('tokennya')).id
 
-   fetch(`http://localhost:3000/api/users/?id=${iou}`).then(res => {
+   fetch(`/api/users/?id=${iou}`).then(res => {
       return res.json()
    }).then(json => {
       if (parseInt(($('#price').text()).slice(2))) {
@@ -15,7 +15,7 @@ function checkout() {
          }
          $.ajax({
             type: 'POST',
-            url: 'http://localhost:3000/api/orders',
+            url: '/api/orders',
             data: JSON.stringify(data),
             headers: {
                Accept: "application/json",
